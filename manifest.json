@@ -1,0 +1,28 @@
+{
+   "manifest_version":2,
+   "author":"Mateus Alexandre Gonçalves da Silva",
+   "name":"Service Desk Assistant - Web",
+   "description":"Assistente para Service Desk versão Web",
+   "version":"1.0",
+   "content_scripts":[
+      {
+         "matches":[
+            "http://multi-prd/*",
+            "*://*/*",
+            "file:///*"
+         ],
+         "js":[
+            "principal.js"
+         ]
+      }
+   ],
+   "web_accessible_resources":[
+      "compartilhado.js"
+   ],
+   "permissions":[
+      "activeTab",
+      "http://multi-prd/*",
+      "*://*/*",
+      "file:///*"
+   ]
+}

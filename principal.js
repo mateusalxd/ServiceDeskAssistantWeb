@@ -36,7 +36,7 @@ function carregar() {
 
             var tabela = aba.getElementsByTagName('table')[1];
             var idTabela = tabela.id;
-            var linhas = tabela.querySelectorAll('.lin_impar_hover, .lin_par_hover');
+            var linhas = tabela.querySelectorAll('tr.lin_impar_hover, tr.lin_par_hover');
 
             for (j = 0; j < linhas.length; j++) {
                 var statusLinha = linhas[j].cells[7].getAttribute('sorttable_customkey');

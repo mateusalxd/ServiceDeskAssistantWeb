@@ -8,7 +8,7 @@
       {
          "matches":[
             "*://multi-prd/*",
-            "*://servicedesk.cooxupe.com.br:*/*",
+            "*://servicedesk.cooxupe.com.br/*",
             "file:///*"
          ],
          "js":[
@@ -22,7 +22,7 @@
    "permissions":[
       "activeTab",
       "*://multi-prd/*",
-      "*://servicedesk.cooxupe.com.br:*/*",      
+      "*://servicedesk.cooxupe.com.br/*",      
       "file:///*"
    ]
 }

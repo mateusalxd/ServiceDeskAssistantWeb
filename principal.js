@@ -1,4 +1,4 @@
-function montarCaixaSelecao(status, tabela) {
+function montarCaixaSelecao(status, tabela, coluna) {
     var caixaSelecao = document.createElement('select');
     var opcao = document.createElement('option');
     opcao.text = 'Todos';
@@ -15,6 +15,10 @@ function montarCaixaSelecao(status, tabela) {
     var atributo = document.createAttribute("referencia");
     atributo.value = tabela;
     caixaSelecao.setAttributeNode(atributo);
+
+    atributo = document.createAttribute("coluna");
+    atributo.value = coluna;
+    caixaSelecao.setAttributeNode(atributo);    
 
     atributo = document.createAttribute("onchange");
     atributo.value = "filtrar(this)";
@@ -37,13 +41,22 @@ function carregar() {
             var tabela = aba.getElementsByTagName('table')[1];
             var idTabela = tabela.id;
             var linhas = tabela.querySelectorAll('tr.lin_impar_hover, tr.lin_par_hover');
+            
+            var titulos = tabela.querySelectorAll('thead tr th');
+            var coluna = 7;
+            for(k = titulos.length - 1; k != 0; k--) {
+                if (titulos[k].textContent == "Status") {
+                    coluna = k;
+                    break;
+                }
+            }
 
             for (j = 0; j < linhas.length; j++) {
-                var statusLinha = linhas[j].cells[7].getAttribute('sorttable_customkey');
+                var statusLinha = linhas[j].cells[coluna].getAttribute('sorttable_customkey');
                 status.add(statusLinha);
             }
 
-            var caixaSelecao = montarCaixaSelecao(status, idTabela);
+            var caixaSelecao = montarCaixaSelecao(status, idTabela, coluna);
             inserirFiltro(idAba, caixaSelecao);
         }
     }

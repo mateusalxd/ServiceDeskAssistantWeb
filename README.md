@@ -10,3 +10,8 @@ Extensão para Chrome e Firefox que incorpora novas funcionalidades ao Service D
 ##### versão 1.1
 
 * Correção na verificação das linhas que devem ser filtradas.
+
+##### versão 1.2
+
+* Correção na coluna utilizada para filtrar o status.
+* Ajuste nas permissões.

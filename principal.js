@@ -1,4 +1,4 @@
-function montarCaixaSelecao(status, tabela, coluna) {
+function montarCaixaSelecao(status, tabela, coluna, quantidades) {
     var caixaSelecao = document.createElement('select');
     var opcao = document.createElement('option');
     opcao.text = 'Todos';
@@ -7,7 +7,7 @@ function montarCaixaSelecao(status, tabela, coluna) {
 
     for (let statusAtual of status.values()) {
         opcao = document.createElement('option');
-        opcao.text = statusAtual;
+        opcao.text = statusAtual + ' (' + quantidades[statusAtual] + ')';
         opcao.value = statusAtual;
         caixaSelecao.add(opcao);
     }
@@ -18,7 +18,7 @@ function montarCaixaSelecao(status, tabela, coluna) {
 
     atributo = document.createAttribute("coluna");
     atributo.value = coluna;
-    caixaSelecao.setAttributeNode(atributo);    
+    caixaSelecao.setAttributeNode(atributo);
 
     atributo = document.createAttribute("onchange");
     atributo.value = "filtrar(this)";
@@ -41,7 +41,7 @@ function carregar() {
             var tabela = aba.getElementsByTagName('table')[1];
             var idTabela = tabela.id;
             var linhas = tabela.querySelectorAll('tr.lin_impar_hover, tr.lin_par_hover');
-            
+
             var titulos = tabela.querySelectorAll('thead tr th');
             var coluna = 7;
             for(k = titulos.length - 1; k != 0; k--) {
@@ -51,12 +51,18 @@ function carregar() {
                 }
             }
 
+            var quantidades = {};
             for (j = 0; j < linhas.length; j++) {
                 var statusLinha = linhas[j].cells[coluna].getAttribute('sorttable_customkey');
                 status.add(statusLinha);
+                if (quantidades[statusLinha] == undefined) {
+                    quantidades[statusLinha] = 0;
+                }
+
+                quantidades[statusLinha] += 1;
             }
 
-            var caixaSelecao = montarCaixaSelecao(status, idTabela, coluna);
+            var caixaSelecao = montarCaixaSelecao(status, idTabela, coluna, quantidades);
             inserirFiltro(idAba, caixaSelecao);
         }
     }
@@ -66,7 +72,7 @@ function inserirFiltro(aba, caixaSelecao) {
     var linha = document.querySelector('#' + aba + ' table tr');
     var coluna = linha.insertCell(-1);
     var atributo = document.createAttribute("align");
-    atributo.value = 'right'; 
+    atributo.value = 'right';
     coluna.setAttributeNode(atributo);
     coluna.innerHTML = caixaSelecao.outerHTML;
 }

@@ -15,3 +15,7 @@ Extensão para Chrome e Firefox que incorpora novas funcionalidades ao Service D
 
 * Correção na coluna utilizada para filtrar o status.
 * Ajuste nas permissões.
+
+##### versão 1.3
+
+* Ajuste para exibir a quantidade de linhas de cada status.

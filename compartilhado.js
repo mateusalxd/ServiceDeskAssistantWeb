@@ -19,3 +19,13 @@ function filtrar(caixaSelecao) {
         }
     }
 }
+
+function definirEventos() {
+    let caixasSelecao = document.querySelectorAll('select[tipo="filtro"]');
+    for (let i = 0; i < caixasSelecao.length; i++) {
+        let caixaSelecao = caixasSelecao[i];
+        caixaSelecao.addEventListener('change', function() { filtrar(this) });
+    }
+}
+
+definirEventos();
